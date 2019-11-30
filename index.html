@@ -15,7 +15,7 @@
   <body class="container-fluid">
     <header class="row">
       <div class="col-12 bannerStyle">
-        <p>Music is Fun</p>
+        <p>Soul Food</p>
       </div>
       <div class="offset-8 col-4">
         <form onsubmit="app.songsController.search(event)">
@@ -33,21 +33,39 @@
     </header>
 
     <main class="row">
-      <div class="col-6">
+      <div class="col-3">
         <h3 class="text-center">Search Results</h3>
-        <div id="songs" class="col-12 m-0">
-          <!-- template to generate -->
+        <div id="songs" class="row m-0">
+          <div class="col">
+            <h4>Song List</h4>
+            <div  id="song-list">
+              <ol>
+                  
+              </ol>
+
+
+              <!-- template to generate -->
+            </div>
+          </div>
+          
         </div>
       </div>
-      <div class="col-6">
+<div class="col-6">
+  <h3 class="text-center">CURRENT SONG</h3>
+</div>
+
+
+
+      <div class="col-3">
         <h3 class="text-center">Playlist</h3>
-        <div class="row m-0" id="playlist" style="flex-direction: column; text-align: center;"></div>
+        <div class="row m-0" id="playlist" style="flex-direction: column; text-align: center;">
           <div class="col">Playlist1</div>
           <div class="col">Playlist2</div>
           <div class="col">Playlist3</div>
           <div class="col">Playlist4</div>
           <!-- template for playlist -->
         </div>
+      </div>
       </div>
     </main>
 
