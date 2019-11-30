@@ -5,3 +5,20 @@
 .col-6, .col-12, .col {
   border: 2px solid green;
 }
+
+.itunes__track {
+  display: inline-flex;
+  margin: 1rem;
+}
+
+.itunes__track__cover {
+/* height: 2rem;
+width: 2rem; */
+
+}
+
+
+
+#song-list {
+  padding-left: 1rem;
+}
