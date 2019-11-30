@@ -13,6 +13,18 @@ export default class Song {
   get Template() {
     return `
 
+    <li class="itunes__track">
+                      <img class="itunes__track__cover" src="${this.albumArt}">
+                      <div class="itunes__track__info">
+                      <h3 class="itunes__track__title">${this.title}</h3>
+                      <span class="itunes__track__artist">${this.artist}</span>
+                      </div>
+                      <span class="itunes__track__time">4:34</span>
+                      <button type="button" class="btn btn-success" onclick="app.songsController.addSong('${this._id}')">+</button>
+            </div>
+    `
+                    </li>
+
         `;
   }
 

@@ -1,0 +1,7 @@
+.row {
+  border: 3px solid red;
+}
+
+.col-6, .col-12, .col {
+  border: 2px solid green;
+}

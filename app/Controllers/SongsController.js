@@ -3,7 +3,13 @@ import SongService from "../Services/SongsService.js";
 
 //Private
 /**Draws the Search results to the page */
-function _drawResults() {}
+function _drawResults() {
+  let template = ''
+  let songs = store.State.songs
+  songs.forEach(song => template += song.Template)
+
+
+}
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {}
 
