@@ -11,7 +11,7 @@ class SongsService {
   constructor() {
     // NOTE this will get your songs on page load
     this.getJDSongs();
-    this.loadSongs();
+    // this.loadSongs();
   }
   /**
    * Takes in a search query and retrieves the results that will be put in the store
@@ -53,7 +53,7 @@ class SongsService {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
 _sandBox.post("/songs", id).then(res => {
-  this.loadSongs()
+  this.getJDSongs()
 }).catch(err =>{
   console.error(err)
 })
@@ -62,15 +62,17 @@ _sandBox.post("/songs", id).then(res => {
   /**
    * Sends GET request to our sandbox to post to our playlist on screen
    */
-  loadSongs(){
-    _sandBox.get("/songs").then(res => {
-      console.log(res)
-      let songs = res.data.map(s => new Song(s))
-      store.commit("songs", songs)
-    }).catch(err =>{
-      console.error(err)
-    })
-  }
+  // loadSongs(){
+  //   _sandBox.get("/songs").then(res => {
+  //     console.log(res)
+  //     let songs = res.data.map(s => new Song(s))
+  //     store.commit("songs", songs)
+  //   }).catch(err =>{
+  //     console.error(err)
+  //   })
+  // }
+
+
   /**
    * Sends a delete request to the sandbox to remove a song from the playlist
    * Afterwords it will update the store to reflect saved info
