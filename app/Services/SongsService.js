@@ -78,11 +78,11 @@ _sandBox.post("/songs", id).then(res => {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  removeSong(songId) {
+  removeSong(id) {
     //TODO Send the id to be deleted from the server then update the store
-    _sandBox.delete('/songs/${songId}').then(res => {
+    _sandBox.delete('/songs/'+ id).then(res => {
       console.log(res)
-      this.loadSongs()
+      this.getJDSongs()
     }).catch(err => {
       console.error(err)
     })
