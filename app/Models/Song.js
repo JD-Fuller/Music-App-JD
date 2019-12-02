@@ -27,7 +27,7 @@ export default class Song {
   get playlistTemplate() {
     return `
     <li class="itunes__track">
-                      <img class="itunes__track__cover" src="${this.albumArt}">
+                      
                       <div class="itunes__track__info">
                       <h3 class="itunes__track__title">${this.title}</h3>
                       <span class="itunes__track__artist">${this.artist}</span>
@@ -37,3 +37,6 @@ export default class Song {
         `;
   }
 }
+
+
+{/* <img class="itunes__track__cover" src="${this.albumArt}"></img> */}

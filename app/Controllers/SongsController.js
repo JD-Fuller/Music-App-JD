@@ -48,24 +48,7 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  addSong(id) {
-    id.preventDefault()
-    let songData = id.target
-    let newSong = {
-      title: songData.data.trackName.value || songData.title.value,
-    albumArt:
-      songData.albumArt || songData.artworkUrl100.replace(/100x100/g, "50x50"),
-      artist: songData.artistName.value || songData.artist.value,
-      album:  songData.collectionName.value || songData.album.value,
-    price:  songData.trackPrice.value || songData.price.value,
-    preview:  songData.previewUrl.value || songData.preview.value,
-    _id:  songData.trackId.value || songData._id.value,
-    durationInMillis: songData.durationInMillis.value
-
-    }
-    service.addSong(newSong)
-    
-    console.log(event.target.title.value)
+  addSong() {
 
   }
 

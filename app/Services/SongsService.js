@@ -34,15 +34,16 @@ class SongsService {
    * Retrieves the saved list of songs from the sandbox
    */
   getJDSongs() {
-    _sandBox
-      .get()
+    _sandBox.get("/songs")
       .then(res => {
         //TODO What are you going to do with this result
-        let results = res.results.map(rawData => new Song(rawData));
+        let results = res.results.map(rawData => new Song(rawData))
+        store.commit("songs", results);
       })
       .catch(error => {
         throw new Error(error);
       });
+      console.log(_sandBox)
   }
   /**
    * Takes in a song id and sends it from the search results to the sandbox to be saved.
