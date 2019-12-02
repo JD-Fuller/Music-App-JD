@@ -85,16 +85,16 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  // removeSong(id) {
+  removeSong(id) {
   //   //TODO Send the id to be deleted from the server then update the store
-  //   _sandBox.delete('/playlist'+ id).then(res => {
-  //     console.log(res)
-  //     this.getJDSongs()
-  //   }).catch(err => {
-  //     console.error(err)
-  //   })
+    _sandBox.delete('playlist'+ id).then(res => {
+      console.log(res)
+      this.getMySongs()
+    }).catch(err => {
+      console.error(err)
+    })
 
-  // }
+  }
 }
 
 const service = new SongsService();

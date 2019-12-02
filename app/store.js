@@ -19,8 +19,8 @@ let _listeners = {
 
 function _loadState() {
   try {
-    let data = JSON.parse(localStorage.getItem("SongList"));
-    _state.songs = data.songs.map(playlist => new Song(playlist));
+    let data = JSON.parse(localStorage.getItem("playlist"));
+    _state.playlist = data.playlist.map(playlist => new Song(playlist));
   } catch (e) {}
 }
 _loadState();
