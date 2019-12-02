@@ -19,6 +19,8 @@ playlist.forEach(playlist => playlistTemplate += playlist.playlistTemplate)
 
 document.querySelector("#playlist").innerHTML = playlistTemplate
 }
+_drawResults();
+_drawPlaylist();
 
 //Public
 export default class SongsController {
@@ -48,7 +50,11 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  addSong() {
+  addSong(id) {
+    service.addSong(id);
+_drawPlaylist();
+_drawResults();
+console.log(service.addSong(id));
 
   }
 
