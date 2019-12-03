@@ -17,13 +17,13 @@ let _listeners = {
   playlist: []
 };
 
-function _loadState() {
-  try {
-    let data = JSON.parse(localStorage.getItem("playlist"));
-    _state.playlist = data.playlist.map(playlist => new Song(playlist));
-  } catch (e) {}
-}
-_loadState();
+// function _loadState() {
+//   try {
+//     let data = JSON.parse(localStorage.getItem("playlist"));
+//     _state.playlist = data.playlist.map(playlist => new Song(playlist));
+//   } catch (e) {}
+// }
+// _loadState();
 
 
 //NOTE You should not need to change the code from this point down

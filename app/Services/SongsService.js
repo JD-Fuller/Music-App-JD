@@ -4,14 +4,13 @@ import store from "../store.js";
 // @ts-ignore
 let _sandBox = axios.create({
   //TODO Change YOURNAME to your actual name
-  baseURL: "//bcw-sandbox.herokuapp.com/api/jdfuller/"
+  baseURL: "//bcw-sandbox.herokuapp.com/api/jdfuller/songs"
 });
 
 class SongsService {
   constructor() {
     // NOTE this will get your songs on page load
     this.getMySongs();
-    // this.loadSongs();
   }
   /**
    * Takes in a search query and retrieves the results that will be put in the store
@@ -34,12 +33,10 @@ class SongsService {
    * Retrieves the saved list of songs from the sandbox
    */
   getMySongs() {
-    debugger;
-    _sandBox.get("songs")
+    _sandBox.get()
       .then(res => {
-        //TODO What are you going to do with this result
-        let results = res.results.map(rawData => new Song(rawData))
-        store.commit("songs", results);
+        let results = res.data.data.map(rawData => new Song(rawData))
+        store.commit("playlist", results);
       })
       .catch(error => {
         throw new Error(error);
@@ -51,34 +48,22 @@ class SongsService {
    * @param {string} id
    */
   addSong(id) {
-    //TODO you only have an id, you will need to find it in the store before you can post it
-    //TODO After posting it what should you do?
-
     //Find song by ID
-    let newSong = store.State.songs.filter(s => {s._id == id})
+    let newSong = store.State.songs.find(s => s._id == id)
     //Post song to _sandBox
-    
-    _sandBox.post("songs", newSong).then(res => {
-    this.getMySongs()
+    _sandBox.post("", newSong)
+    .then(res => {
+
+    store.State.playlist.push(new Song(res.data.data));
+    store.commit("playlist", store.State.playlist)
+
+    //OR let playlist = [newSong, ...store.State.playlist];
+
       }).catch(err => {
-      console.error(err)
-      store.State.playlist.push(new Song(newSong));
-})
+      throw err;
+  });
+
   }
-
-  /**
-   * Sends GET request to our sandbox to post to our playlist on screen
-   */
-  // loadSongs(){
-  //   _sandBox.get("/songs").then(res => {
-  //     console.log(res)
-  //     let songs = res.data.map(s => new Song(s))
-  //     store.commit("songs", songs)
-  //   }).catch(err =>{
-  //     console.error(err)
-  //   })
-  // }
-
 
   /**
    * Sends a delete request to the sandbox to remove a song from the playlist
@@ -86,15 +71,15 @@ class SongsService {
    * @param {string} id
    */
   removeSong(id) {
-  //   //TODO Send the id to be deleted from the server then update the store
-    _sandBox.delete('playlist'+ id).then(res => {
-      console.log(res)
-      this.getMySongs()
-    }).catch(err => {
-      console.error(err)
+    _sandBox.delete(id)
+    .then(res => {
+      let i = store.State.playlist.findIndex(s => s._id == id);
+      store.State.playlist.splice(i, 1);
+      store.commit("playlist", store.State.playlist);
     })
-
   }
+
+
 }
 
 const service = new SongsService();

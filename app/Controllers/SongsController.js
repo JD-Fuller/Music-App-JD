@@ -13,26 +13,25 @@ function _drawResults() {
 }
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {
-let playlistTemplate = ''
-let playlist = store.State.playlist
-playlist.forEach(playlist => playlistTemplate += playlist.playlistTemplate)
+let template = ''
+store.State.playlist.forEach(song => {
+  template += song.playlistTemplate;
+})
 
-document.querySelector("#playlist").innerHTML = playlistTemplate
+// let playlist = store.State.playlist
+// playlist.forEach(playlist => playlistTemplate += playlist.playlistTemplate)
+
+document.querySelector("#playlist").innerHTML = template
 }
-_drawResults();
-_drawPlaylist();
 
 //Public
 export default class SongsController {
   constructor() {
     console.log("hello from song controller")
     store.subscribe("songs", _drawResults)
-    _drawResults()
 
     console.log("hello from playlist creator")
     store.subscribe("playlist",_drawPlaylist)
-    _drawPlaylist()
-    //TODO Don't forget to register your subscribers
   }
 
   /**Takes in the form submission event and sends the query to the service */
@@ -45,22 +44,32 @@ export default class SongsController {
       console.error(error);
     }
   }
-
   /**
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
   addSong(id) {
     service.addSong(id);
-_drawPlaylist();
-_drawResults();
-console.log(service.addSong(id));
-
   }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id
    */
-  removeSong(id) {}
+  removeSong(id) {
+      service.removeSong(id);
+
+  }
+/**
+ * find and play a song by its id
+ * @param {string} id 
+ */
+  playSong(id) {
+    let song = store.State.songs.find(s => s._id == id);
+    //TODO 
+    //if (!song) { throw new Error("invalid id");}
+    //
+    document.getElementById("#media-player").innerHTML = song.PreviewTemplate;
+
+  }
 }
